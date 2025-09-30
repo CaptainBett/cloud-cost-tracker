@@ -5,3 +5,4 @@ __pycache__/
 *.zip
 lambda/*.zip
 .aws/
+.terraform.lock.hcl
