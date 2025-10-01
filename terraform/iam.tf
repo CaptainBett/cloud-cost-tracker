@@ -57,6 +57,14 @@ resource "aws_iam_role_policy" "lambda_policy" {
         ],
         Resource = "*"
       },
+      {
+        Effect = "Allow",
+        Action = [
+          "ce:GetCostAndUsage",
+          "ce:GetCostForecast"
+        ],
+        Resource = "*"
+      }
     ]
   })
 }
