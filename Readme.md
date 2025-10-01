@@ -19,7 +19,6 @@ The system tracks AWS costs, stores them in DynamoDB, exposes them via API, disp
 * [Screenshots](#screenshots)
 * [Security Best Practices](#security-best-practices)
 * [How to Run](#how-to-run)
-* [Future Improvements](#future-improvements)
 
 ---
 
