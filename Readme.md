@@ -53,10 +53,11 @@ graph TD
 
 📸 **Screenshots**
 
-* `03-iam-user.png` — IAM console with new user
-* `04-sts-get-caller-identity.png` — CLI identity output
-* `05-terraform-init.png` — Terraform init success
-* `06-github-terraform-provider.png` — GitHub commit
+* `IAM-user.png` — IAM console with new user
+* `aws-configure.png` — CLI identity output
+* `terraform-init.png` — Terraform init success
+* `empty-repo.png` — GitHub initialization
+* `first-commit.png` — GitHub commit
 
 ---
 
@@ -68,10 +69,10 @@ graph TD
 
 📸 **Screenshots**
 
-* `07-dynamodb-table.png` — DynamoDB console
-* `08-terraform-apply-cost-logger.png` — Terraform apply success
-* `09-lambda-cost-logger.png` — Lambda console
-* `10-dynamodb-scan.png` — DynamoDB scan output
+* `dynamodb.png` — DynamoDB console
+* `terraform-apply.png` — Terraform apply success
+* `lambda-function.png` — Lambda console
+* `dynamodb-scan.png` — DynamoDB scan output
 
 ---
 
@@ -83,9 +84,9 @@ graph TD
 
 📸 **Screenshots**
 
-* `11-api-gateway-console.png` — API Gateway console with `/costs`
-* `12-lambda-api-reader.png` — API reader Lambda
-* `13-curl-api-costs.png` — Terminal showing JSON from `/costs`
+* `api-gateway-console.png` — API Gateway console with `/costs`
+* `cost-api-reader.png` — API reader Lambda
+* `curl-api-costs.png` — Terminal showing JSON from `/costs`
 
 ---
 
@@ -97,9 +98,9 @@ graph TD
 
 📸 **Screenshots**
 
-* `14-sns-confirmation.png` — Email subscription confirmation
-* `15-sns-topic-console.png` — SNS topic in console
-* `16-cloudwatch-alarm.png` — Alarm details
+* `sns-subscription.png` — Email subscription confirmation
+* `sns-topic.png` — SNS topic in console
+* `cloudwatch-alarm.png` — Alarm details
 
 ---
 
@@ -111,9 +112,9 @@ graph TD
 
 📸 **Screenshots**
 
-* `17-s3-bucket-console.png` — S3 bucket console
-* `18-cloudfront-distribution.png` — CloudFront distribution console
-* `19-dashboard-browser.png` — Browser showing dashboard
+* `s3-bucket.png` — S3 bucket console
+* `cloudfront.png` — CloudFront distribution console
+* `dashboard-browser.png` — Browser showing dashboard
 
 ---
 
@@ -126,10 +127,8 @@ graph TD
 
 📸 **Screenshots**
 
-* `20-cloudwatch-custom-metric.png` — CloudWatch custom metric
-* `21-custom-cost-alarm.png` — Alarm details
-* `22-alert-email.png` — Email alert triggered
-* `23-dashboard-with-data.png` — Dashboard with rows
+* `custom-cost-alarm.png` — Alarm details
+* `frontend-output.png` — Dashboard with rows
 
 ---
 
@@ -182,11 +181,3 @@ provider "aws" {
 4. Confirm SNS subscription via email.
 5. Open CloudFront URL for dashboard.
 
----
-
-## 🌱 Future Improvements
-
-* Add authentication for API Gateway (Cognito or IAM auth).
-* Add multi-currency support in dashboard.
-* Store cost breakdown by service, not just total.
-* Replace email alerts with Slack / Teams integration.
