@@ -25,20 +25,7 @@ The system tracks AWS costs, stores them in DynamoDB, exposes them via API, disp
 
 ## 🏗 Architecture
 
-```mermaid
-graph TD
-  E[EventBridge Schedule<br/>rate(5 minutes)] --> L[Lambda (cost-logger)]
-  L --> D[DynamoDB: cost-tracker-logs]
-  L --> CW[CloudWatch: Custom/CostTracker Metric]
-  CW --> A[CloudWatch Alarm]
-  A --> SNS[SNS Topic (Email Alert)]
-  SNS --> Email[Email Notification]
-  D --> R[API Reader Lambda]
-  R --> API[API Gateway /costs]
-  API --> F[Frontend (S3 + CloudFront)]
-  Browser[Browser] --> F
-  Browser --> API
-```
+![Cloud Cost Tracker Architecture](screenshots/architecture.png)
 
 ---
 
