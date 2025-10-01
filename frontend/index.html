@@ -19,16 +19,27 @@
     </thead>
     <tbody></tbody>
   </table>
+
   <script>
     async function loadData() {
-      const res = await fetch("https://m64dyclife.execute-api.us-east-1.amazonaws.com/costs");
-      const data = await res.json();
-      const tbody = document.querySelector("#costsTable tbody");
-      tbody.innerHTML = "";
-      data.forEach(item => {
-        const row = `<tr><td>${item.timestamp}</td><td>${item.estimated_charges}</td></tr>`;
-        tbody.innerHTML += row;
-      });
+      // Terraform will replace @@API_URL@@ with the actual API endpoint during terraform apply
+      const API_URL = "@@API_URL@@";
+      try {
+        const res = await fetch(`${API_URL}/costs`);
+        if (!res.ok) {
+          console.error("API responded with", res.status, await res.text());
+          return;
+        }
+        const data = await res.json();
+        const tbody = document.querySelector("#costsTable tbody");
+        tbody.innerHTML = "";
+        data.forEach(item => {
+          const row = `<tr><td>${item.timestamp}</td><td>${item.estimated_charges}</td></tr>`;
+          tbody.innerHTML += row;
+        });
+      } catch (e) {
+        console.error("Fetch failed", e);
+      }
     }
     loadData();
   </script>

@@ -10,7 +10,6 @@ resource "aws_s3_bucket" "frontend_bucket" {
   }
 }
 
-# Attach website config separately 
 resource "aws_s3_bucket_website_configuration" "frontend" {
   bucket = aws_s3_bucket.frontend_bucket.id
 
@@ -19,11 +18,16 @@ resource "aws_s3_bucket_website_configuration" "frontend" {
   }
 }
 
-# Use new resource type for objects
+# Render the index.html by replacing @@API_URL@@ with the real API endpoint (no template interpolation)
+locals {
+  raw_index_html = file("${path.module}/../frontend/index.html")
+  rendered_index = replace(local.raw_index_html, "@@API_URL@@", aws_apigatewayv2_api.http_api.api_endpoint)
+}
+
 resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.frontend_bucket.id
   key          = "index.html"
-  source       = "${path.module}/../frontend/index.html"
+  content      = local.rendered_index
   content_type = "text/html"
 }
 
@@ -51,7 +55,7 @@ resource "aws_cloudfront_distribution" "cdn" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
 
-    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" # AWS Managed-CachingOptimized
+    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" # AWS managed caching policy
   }
 
   restrictions {
@@ -87,7 +91,6 @@ resource "aws_s3_bucket_policy" "frontend_policy" {
   bucket = aws_s3_bucket.frontend_bucket.id
   policy = data.aws_iam_policy_document.bucket_policy.json
 }
-
 
 output "cloudfront_url" {
   value = aws_cloudfront_distribution.cdn.domain_name
