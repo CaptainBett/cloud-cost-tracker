@@ -167,3 +167,8 @@ provider "aws" {
 4. Confirm SNS subscription via email.
 5. Open CloudFront URL for dashboard.
 
+
+## ⚡ Challenges & Solutions
+
+* **Access Key Use Case Confusion:** When creating my IAM access keys, I mistakenly chose the use case *AWS CLI* instead of *Programmatic Access for local code/Terraform*. This led to Terraform not authenticating properly. I fixed it by recreating the IAM user with correct permissions for Terraform usage.
+* **Dynamic API URL Errors:** Embedding the API Gateway endpoint in the frontend caused template rendering errors (`Unknown variable API_URL`). Fixed by using `template_file` with lowercase `api_url` and escaping JS template literals (`\${}`).
